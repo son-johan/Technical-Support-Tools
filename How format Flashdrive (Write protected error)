@@ -1,0 +1,39 @@
+How format Flashdrive (Write protected error)
+
+1. Check for a Physical Lock Switch
+Some USB flash drives have a tiny switch on the side (like an SD card).
+If it’s set to Lock, you won’t be able to format.
+
+Slide it to Unlock, then try formatting again.
+
+2. Remove Write Protection via Command Prompt (Diskpart)
+⚠️ Careful: this will erase everything on the drive.
+Press Win + R, type cmd, and press Enter.
+
+Type:
+
+ diskpart 
+then press Enter.
+List all disks:
+
+ list disk
+ (Find your flash drive by size.)
+
+Select your flash drive:
+
+ select disk X
+ (Replace X with the correct number.)
+
+
+Clear write protection:
+
+attributes disk clear readonly
+ 
+Now try formatting:
+
+clean
+create partition primary
+format fs=ntfs quick
+assign
+exit
+
